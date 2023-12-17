@@ -1,0 +1,105 @@
+<section class="header">
+ <div class="header-title">
+   <h1>Testing the cars of future </h1>
+  <p>At the heart of driving innovation, each test conducted at our Munich Test Bed contributes significantly to a revolutionary leap in automotive progress, shaping the future of how we drive</p>
+ </div>
+</section>
+<section class="content">
+  <div class="content-item">
+    <div class="left" [routerLink]="['/booking']">
+            <h1>
+              Safe on the Road
+            </h1>
+            <p>
+              Our cutting-edge technology enables cars of tomorrow to communicate seamlessly with pedestrians, cyclists, and even the most vulnerable road users like children and the elderly
+            </p>
+      <div class="image">
+        <img [ngSrc]="'./assets/imgs/usecase3.png'" [width]="255" [height]="255" alt="">
+      </div>
+    </div>
+    <div class="right not-active"></div>
+  </div>
+  <div class="content-item">
+    <div class="left not-active"></div>
+    <div class="right" [routerLink]="['/certification']">
+      <h1>
+        Get Certified
+      </h1>
+      <p>
+        We provide a multitude of certification scenarios through our adaptable intersection layout. Freed from the constraints of regular traffic regulations, our dedicated private test bed allows for precision and reproducibility in every scenario.
+      </p>
+      <div class="image">
+        <img [ngSrc]="'./assets/imgs/usecase2.png'" [width]="255" [height]="255" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="content-item">
+    <div class="left" [routerLink]="['/booking']">
+      <h1>
+        Advanced Traffic Signal Controls
+      </h1>
+      <p>
+        intersections free of red lights, where vehicles glide through smoothly, guided by our innovative Green Light Optimized Speed Advisory (GLOSA) system.
+      </p>
+      <div class="image">
+        <img [ngSrc]="'./assets/imgs/usecase1.png'" [width]="255" [height]="255" alt="">
+      </div>
+    </div>
+    <div class="right not-active"></div>
+  </div>
+  <div class="content-item">
+    <div class="left not-active">
+    </div>
+    <div class="right" [routerLink]="['/booking']">
+      <h1>
+        Augmented Reality Testing
+      </h1>
+      <p>
+        blending the real world with a virtual environment to create an unparalleled testing experience. This advanced setup allows for safe coupling with other simulators, bringing you the unique 'Vehicle-in-the-loop' experience.
+      </p>
+      <div class="image">
+        <img [ngSrc]="'./assets/imgs/usecase4.png'" [width]="255" [height]="255" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="try-now">
+  <p>Pioneering Automated and Connected Vehicle Testing to Drive the Evolution of Transportation</p>
+  <div> <button mat-raised-button color="primary" [routerLink]="['/booking']">BOOK NOW</button></div>
+  <img [ngSrc]="'./assets/imgs/simulation-panel.png'" fill alt="simulation-panel">
+</section>
+
+
+
+<section class="more-info">
+ <div>
+   <h1>Test, Iterate, and Shape the Future</h1>
+   <p>latest technology with the best practise</p>
+ </div>
+</section>
+<section class="more-info-2">
+<div class="info-item">
+  <img [ngSrc]="'./assets/imgs/5g.png'" [width]="50" [height]="50" alt="5g">
+  <h3>
+    5G CONNECTIVITY
+    LIVE SIMULATION
+    DATA ANALYSIS
+  </h3>
+</div>
+  <div class="info-item">
+    <img [ngSrc]="'./assets/imgs/charge.png'" [width]="50" [height]="50" alt="charge">
+    <h3>
+      CHARGE, PARK AND DRIVE LANE
+    </h3>
+  </div>
+  <div class="info-item">
+    <img [ngSrc]="'./assets/imgs/location.png'" [width]="50" [height]="50" alt="location">
+    <h3>
+      INTERSECTION AREA
+      DYNAMIC AND FLEXIBLE TEST BED
+    </h3>
+  </div>
+
+</section>
+<section class="empty-space"></section>
+<div #canvasContainer class="viewer-container"></div>

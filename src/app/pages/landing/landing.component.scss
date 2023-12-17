@@ -1,0 +1,182 @@
+.header {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(2deg, #525D70 -8.84%, #060709 88.6%);
+  z-index: 1;
+  position: relative;
+
+  .header-title {
+    background-image: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Makes the text color transparent */
+    -webkit-text-fill-color: transparent; /* For Safari */
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    h1{
+      font-size: 42px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    p{
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 7rem;
+  z-index: 3;
+
+  .content-item {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    padding-top: 2rem;
+    font-size: 16px;
+    justify-content: space-between;
+    .left {
+      flex-basis: 25%;
+      padding: 2rem;
+      position: relative;
+      background: #2B2B2B;
+      border-radius: 8px;
+      color:white;
+      height: 300px;
+      cursor: pointer;
+      h1 {
+        font-size: 21px;
+        width: 50%;
+        margin-bottom: 1.5rem;
+      }
+      p {
+        font-size: 16px;
+        width: 50%;
+      }
+      .image{
+        position: absolute;
+        top: -2rem;
+        right: -3rem;
+      }
+
+    }
+
+    .right {
+      flex-basis: 25%;
+      padding: 2rem;
+      position: relative;
+      background: #2B2B2B;
+      border-radius: 8px;
+      color:white;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      cursor: pointer;
+      h1 {
+        font-size: 21px;
+        width: 50%;
+        margin-bottom: 1.5rem;
+        text-align: right;
+      }
+      p {
+        font-size: 16px;
+        width: 50%;
+        text-align: right;
+      }
+      .image{
+        position: absolute;
+        top: -2rem;
+        left: -3rem;
+      }
+
+    }
+    .not-active{
+      background: transparent;
+    }
+  }
+
+}
+
+.try-now {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  flex-direction: column;
+  margin: 10rem 0;
+  button{
+    position: relative;
+    z-index: 3;
+    width: 200px;
+  }
+  p{
+    position: relative;
+    color: white;
+    z-index: 3;
+  }
+  img{
+    position: absolute;
+    z-index: 2;
+  }
+}
+
+.more-info, more-info-2 {
+  position: relative;
+  z-index: 1;
+  height: 25vh;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+}
+//
+.more-info-2 {
+  background: white;
+  color: black;
+  height: 50vh;
+  display: flex;
+  .info-item{
+    display: flex;
+    flex-basis: 33%;
+    margin: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 12px;
+    background: #2B2B2B;
+    color: white;
+    text-align: center;
+    max-height: 250px;
+    h3{
+      width: 75%;
+    }
+  }
+}
+.empty-space{
+  height: 25vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.viewer-container {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+}
