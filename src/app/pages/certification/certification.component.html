@@ -1,0 +1,212 @@
+<app-nav></app-nav>
+<div class="container">
+  <mat-stepper linear="true" class="flex-center" #stepper [selectedIndex]="selectedStepIndex">
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+  </mat-stepper>
+  <div class="flex-center">
+    <form [formGroup]="submissionForm">
+      @if (currentPhase === certificationPhases.DEVELOPER) {
+        <app-step [title]="'Developer'"
+                  [description]="'Please fill developer information'">
+          <!--      content-->
+          <ng-container content>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Max M" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="max@bmw.de" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Company Name</mat-label>
+              <input matInput placeholder="BMW Groups" formControlName="companyName">
+            </mat-form-field>
+
+          </ng-container>
+
+          <!--      actions-->
+          <button actions mat-raised-button color="primary"
+                  [disabled]="submissionForm.controls.email.invalid || submissionForm.controls.name.invalid || submissionForm.controls.companyName.invalid"
+                  (click)="onNext(certificationPhases.UPDATED); selectedStepIndex = 1">Next
+          </button>
+        </app-step>
+      } @else if (currentPhase === certificationPhases.UPDATED) {
+        <app-step [title]="'Update Details:'"
+                  [description]="'Please fill the Update Details'">
+          <!--      content-->
+          <ng-container content>
+            <mat-form-field appearance="outline">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="Security hotfix" formControlName="updateTitle">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Version Number</mat-label>
+              <input matInput placeholder="22.0.0" formControlName="versionNumber">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Release Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="releaseDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Change Log</mat-label>
+              <textarea matInput placeholder="1. Bugfix in Breaks." formControlName="changeLog"></textarea>
+            </mat-form-field>
+
+
+          </ng-container>
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary" class="mx-1"
+                    (click)="onBack(certificationPhases.DEVELOPER);selectedStepIndex = 0">Back
+            </button>
+            <button mat-raised-button color="primary"
+                    (click)="onNext(certificationPhases.DOCUMENTATION); selectedStepIndex = 2">Next
+            </button>
+          </div>
+        </app-step>
+      } @else if (currentPhase === certificationPhases.DOCUMENTATION) {
+        <app-step [title]="'Vehicle Info'"
+                  [description]="'Please fill the vehicle info'">
+          content
+          <ng-container content>
+            <mat-form-field class="col-12" appearance="outline">
+              <mat-label>Technical Overview(choose File)</mat-label>
+              <input matInput (click)="technicalOverview.click()" formControlName="technicalOverview">
+              <input
+                type="file"
+                multiple
+                hidden
+                #technicalOverview
+                (change)="onFileUploaded($event, 'technicalOverview')"
+              />
+              <button mat-icon-button matIconSuffix (click)="technicalOverview.click()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </mat-form-field>
+
+
+            <mat-form-field class="col-12" appearance="outline">
+              <mat-label>Installation Guide(choose File)</mat-label>
+              <input matInput (click)="installationGuide.click()" formControlName="installationGuide">
+              <input
+                type="file"
+                multiple
+                hidden
+                #installationGuide
+                (change)="onFileUploaded($event, 'installationGuide')"
+              />
+              <button mat-icon-button matIconSuffix (click)="installationGuide.click()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="col-12" appearance="outline">
+              <mat-label>Test Cases(choose File)</mat-label>
+              <input matInput (click)="testCases.click()" formControlName="testCases">
+              <input
+                type="file"
+                multiple
+                hidden
+                #testCases
+                (change)="onFileUploaded($event, 'testCases')"
+              />
+              <button mat-icon-button matIconSuffix (click)="testCases.click()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </mat-form-field>
+
+
+          </ng-container>
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary" class="mx-1"
+                    (click)="onBack(certificationPhases.UPDATED);selectedStepIndex = 1">Back
+            </button>
+            <button mat-raised-button color="primary"
+                    (click)="onNext(certificationPhases.SOURCE_CODE);selectedStepIndex = 3">Next
+            </button>
+          </div>
+
+        </app-step>
+      } @else if (currentPhase === certificationPhases.SOURCE_CODE) {
+        <app-step [title]="'Vehicle Info'"
+                  [description]="'Please fill the vehicle info'">
+
+          <ng-container content>
+
+            <mat-form-field class="col-12" appearance="outline">
+              <mat-label>Source Code(choose File)</mat-label>
+              <input matInput (click)="sourceCode.click()" formControlName="sourceCode">
+              <input
+                type="file"
+                multiple
+                hidden
+                #sourceCode
+                (change)="onFileUploaded($event, 'sourceCode')"
+              />
+              <button mat-icon-button matIconSuffix (click)="sourceCode.click()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Developer Notes</mat-label>
+              <textarea matInput placeholder="test carefully pls" formControlName="developerNotes"></textarea>
+            </mat-form-field>
+          </ng-container>
+
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary" class="mx-1"
+                    (click)="onBack(certificationPhases.SOURCE_CODE);selectedStepIndex = 3">Back
+            </button>
+            <button mat-raised-button color="primary"
+                    (click)="onNext(certificationPhases.CONFIRMATION);selectedStepIndex = 4">Next
+            </button>
+          </div>
+
+        </app-step>
+      } @else if (currentPhase === certificationPhases.CONFIRMATION) {
+        <app-step [title]="'CONFIRMATION'"
+                  [description]="'Please accept terms and conditions'">
+          <!--      content-->
+          <ng-container content>
+            <mat-checkbox color="primary" formControlName="termsAndConditions">Terms and Conditions</mat-checkbox>
+          </ng-container>
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary" (click)="onSave()">
+              @if(loading){
+                <mat-spinner diameter="20" color="accent"></mat-spinner>
+              }@else{
+              Pay 10,000$
+              }
+            </button>
+          </div>
+        </app-step>
+      } @else if (currentPhase === certificationPhases.PAYMENT) {
+        <app-step [title]="'Payment'"
+                  [description]="'Payment is successful'">
+          <!--      content-->
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary"
+                    (click)="onBackMainPage()">Main page
+            </button>
+          </div>
+        </app-step>
+      }
+    </form>
+  </div>
+</div>
