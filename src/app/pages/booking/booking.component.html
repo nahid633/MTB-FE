@@ -1,0 +1,151 @@
+<app-nav></app-nav>
+<div class="container">
+  <mat-stepper class="flex-center" linear="true" #stepper [selectedIndex]="selectedStepIndex">
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+    <mat-step [editable]="false"></mat-step>
+  </mat-stepper>
+  <div class="flex-center">
+    <form [formGroup]="formGroup">
+
+      @if (currentPhase === bookingPhases.TEST_TYPE) {
+        <app-step [title]="'Test Details'"
+                  [description]="'Please select test type'">
+          <!--      content-->
+          <ng-container content formGroupName="testDetails">
+            <mat-form-field appearance="outline">
+              <mat-label>Select Type</mat-label>
+              <mat-select formControlName="testType">
+                @for (type of typeOptions;track type.name) {
+                  <mat-option [value]="type.name">{{ type.label }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            @if (processTypes.IN_PLACE === selectedTestType || processTypes.IN_PLACE_AR === selectedTestType) {
+              <mat-form-field appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="today" formControlName="preferredDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Time</mat-label>
+                <mat-select formControlName="timeSlot">
+                  @for (time of timeOptions;track time) {
+                    <mat-option [value]="time">{{ time }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            }
+          </ng-container>
+
+          <!--      actions-->
+          <button actions mat-raised-button color="primary"
+                  [disabled]="formGroup.controls.testDetails.invalid"
+                  (click)="onNext(bookingPhases.USER_INFO); selectedStepIndex = 1">Next
+          </button>
+        </app-step>
+      } @else if (currentPhase === bookingPhases.USER_INFO) {
+        <app-step [title]="'Test Details'"
+                  [description]="'Please fill the user info'">
+          <!--      content-->
+          <ng-container content formGroupName="userDetails">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="BMW Groups" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="max@bmw.de" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contact Number</mat-label>
+              <input matInput placeholder="+491520" formControlName="contactNumber">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+
+          </ng-container>
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary" class="mx-1"
+                    (click)="onBack(bookingPhases.TEST_TYPE);selectedStepIndex = 0">Back
+            </button>
+            <button mat-raised-button color="primary"
+                    [disabled]="formGroup.controls.userDetails.invalid"
+                    (click)="onNext(bookingPhases.VEHICLE_INFO); selectedStepIndex = 2">Next
+            </button>
+          </div>
+        </app-step>
+      } @else if (currentPhase === bookingPhases.VEHICLE_INFO) {
+        <app-step [title]="'Vehicle Info'"
+                  [description]="'Please fill the vehicle info'">
+          <!--      content-->
+          <ng-container content formGroupName="vehicleInfo">
+            <mat-form-field appearance="outline">
+              <mat-label>Select Make</mat-label>
+              <mat-select formControlName="make">
+                @for (type of vehiclesMakes;track type.name) {
+                  <mat-option [value]="type.name">{{ type.label }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            @if (selectedVehicleMake) {
+              <mat-form-field appearance="outline">
+                <mat-label>Select Model</mat-label>
+                <mat-select formControlName="model">
+                  @for (m of vehiclesModels[selectedVehicleMake];track m.model) {
+                    <mat-option [value]="m.model">{{ m.model }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            }
+            <mat-form-field appearance="outline">
+              <mat-label>Registration Number</mat-label>
+              <input matInput formControlName="registrationNumber">
+            </mat-form-field>
+
+          </ng-container>
+          <!--      actions-->
+          <div actions class="flex-between">
+            <button mat-raised-button color="primary" class="mx-1"
+                    (click)="onBack(bookingPhases.USER_INFO);selectedStepIndex = 2">Back
+            </button>
+            <button mat-raised-button color="primary"
+                    [disabled]="formGroup.controls.vehicleInfo.invalid"
+                    (click)="onSave();selectedStepIndex = 3">
+              @if(loading){
+                <mat-spinner diameter="20" color="accent"></mat-spinner>
+              }@else{
+              Pay {{selectedPrice}}
+                }
+            </button>
+          </div>
+
+        </app-step>
+      } @else if (currentPhase === bookingPhases.PAYMENT_SUCCESS) {
+        <app-step [title]="'Payment'"
+                  [description]="'Payment is successful'">
+          <!--      content-->
+          <!--      actions-->
+          <div actions class="flex-between">
+            @if(formGroup.controls.testDetails.controls.testType.value === processTypes.SIMULATION){
+              <button mat-raised-button color="primary"
+                      (click)="onPlaySimulation()">Play Simulation
+              </button>
+            }@else {
+              <button mat-raised-button color="primary"
+                      (click)="onBackMainPage()">Main Page
+              </button>
+            }
+
+          </div>
+        </app-step>
+      }
+    </form>
+  </div>
+</div>
