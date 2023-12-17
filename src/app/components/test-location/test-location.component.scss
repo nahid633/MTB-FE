@@ -1,0 +1,25 @@
+.viewer-container {
+  width: 200px;
+  height: 200px;
+}
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  .live-simulation{
+    flex-basis: 80%;
+  }
+  .tests{
+    flex-basis: 20%;
+    background: white;
+    button{
+      margin: 1rem;
+    }
+  }
+}
+mat-form-field {
+  width: 100%;
+  margin-top: 1rem  ;
+}
+
+
