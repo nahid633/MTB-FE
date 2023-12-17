@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif;   overscroll-behavior-y: none;
+}
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.py-1{
+  padding: 1rem 0 ;
+}
+
+.mx-1{
+  margin: 0 1rem;
+}
+.mat-step-header {
+  pointer-events: none;
+}
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-spacer{
+flex: 1 1 auto;
+}
+.font-small{
+  font-size: 14px;
+}
