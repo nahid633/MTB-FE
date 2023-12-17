@@ -148,7 +148,7 @@ export class TestLocationComponent  implements OnInit, OnDestroy {
      // this.scene.remove(this.carModel);
      this.gltfLoader.load('./assets/cars/car2.glb', (gltf) => {
       this.animationClips = gltf.animations;
-      this.animate(0);
+      // this.animate(0);
        this.startAnimationByIndex();
     }, undefined, (error) => {
       console.error('An error occurred while loading the car', error);

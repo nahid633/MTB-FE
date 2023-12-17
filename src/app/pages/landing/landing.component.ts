@@ -134,7 +134,7 @@ export class LandingComponent implements OnInit, OnDestroy {
       { x: Math.PI / 4, y: 0, z: 0 },
       { x: 0, y: 0, z: 0 },
       { x: -Math.PI / 4, y: 0, z: 0 },
-    ];
+  ];
     this.carModel.scale.set(4, 4, 4);
 
     // Calculate current stage and interpolation factor

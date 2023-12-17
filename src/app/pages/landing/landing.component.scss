@@ -119,7 +119,10 @@
   button{
     position: relative;
     z-index: 3;
-    width: 200px;
+    width: 250px;
+    height: 100px;
+    font-size: 24px;
+    margin-top: 2rem;
   }
   p{
     position: relative;
@@ -168,7 +171,7 @@
   }
 }
 .empty-space{
-  height: 25vh;
+  height: 48vh;
   width: 100%;
   position: relative;
   z-index: 1;
