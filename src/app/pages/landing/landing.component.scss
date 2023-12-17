@@ -1,5 +1,5 @@
 .header {
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   background: linear-gradient(2deg, #525D70 -8.84%, #060709 88.6%);
   z-index: 1;
@@ -171,7 +171,7 @@
   }
 }
 .empty-space{
-  height: 50vh;
+  height: 45vh;
   width: 100%;
   position: relative;
   z-index: 1;
@@ -179,7 +179,7 @@
 
 .viewer-container {
   position: fixed;
-  top: 0;
+  top: 10%;
   z-index: 2;
 
 }
