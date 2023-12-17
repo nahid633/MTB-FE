@@ -39,6 +39,15 @@
                   }
                 </mat-select>
               </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Select Elements</mat-label>
+                <mat-select formControlName="specialRequirements">
+                  @for (type of ['Intersection', 'Parking deck'];track type) {
+                    <mat-option [value]="type">{{ type }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
             }
           </ng-container>
 
